@@ -83,7 +83,7 @@ exports.deleteAccount = async (req, res) => {
         }
 
         // delete user profile picture From Cloudinary
-        await deleteResourceFromCloudinary(userDetails.image);
+        // await deleteResourceFromCloudinary(userDetails.image);
 
         // if any student delete their account && enrollded in any course then ,
         // student entrolled in particular course sholud be decreae by one
