@@ -1,9 +1,11 @@
 const nodemailer = require('nodemailer');
 
-const mailSender = async (email, title, body) => {
+const mailSender = async (email, title, body,temp="email") => {
     try {
         const transporter = nodemailer.createTransport({
             host: process.env.MAIL_HOST,
+            port: 587,
+            secure: false, 
             auth: {
                 user: process.env.MAIL_USER,
                 pass: process.env.MAIL_PASS
@@ -11,8 +13,8 @@ const mailSender = async (email, title, body) => {
         });
 
         const info = await transporter.sendMail({
-            from: 'StudyNotion || by Aniruddha Gade',
-            to: email,
+            from: 'Tube Academey || by Harshad Patil.',
+            to: temp === "contact us" ? process.env.MAIL_USER : email,
             subject: title,
             html: body
         });

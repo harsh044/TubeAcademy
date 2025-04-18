@@ -1,6 +1,4 @@
-const { eventNames } = require("../../models/section");
-
-const otpTemplate = (otp, name) => {
+exports.otpTemplate = (otp, name) => {
 	return `<!DOCTYPE html>
 	<html>
 	
@@ -28,6 +26,7 @@ const otpTemplate = (otp, name) => {
 			.logo {
 				max-width: 200px;
 				margin-bottom: 20px;
+				background-color: black;
 			}
 	
 			.message {
@@ -69,7 +68,7 @@ const otpTemplate = (otp, name) => {
 	<body>
 		<div class="container">
 			<a href=""><img class="logo"
-					src="https://tubeacademyclass.web.app/assets/Tube_Academy-0b46c2be.png" alt="TubeAcademey Logo"></a>
+					src="https://tubeacademymentor.web.app/assets/Tube_Academy-0b46c2be.png" alt="TubeAcademey Logo"></a>
 			<div class="message">OTP Verification Email</div>
 			<div class="body">
 				<p>Dear ${name}</p>
@@ -80,10 +79,9 @@ const otpTemplate = (otp, name) => {
 				Once your account is verified, you will have access to our platform and its features.</p>
 			</div>
 			<div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-					href="mailto:hp1004032@gmail.com">tubeacademyclass@gmail.com</a>. We are here to help!</div>
+					href="mailto:tubeacadameymentor@gmail.com">tubeacadameymentor@gmail.com</a>. We are here to help!</div>
 		</div>
 	</body>
 	
 	</html>`;
 };
-module.exports = otpTemplate;

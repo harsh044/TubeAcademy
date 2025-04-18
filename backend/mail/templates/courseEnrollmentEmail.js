@@ -27,6 +27,7 @@ exports.courseEnrollmentEmail = (courseName, name) => {
             .logo {
                 max-width: 200px;
                 margin-bottom: 20px;
+                background-color: black;
             }
     
             .message {
@@ -67,7 +68,7 @@ exports.courseEnrollmentEmail = (courseName, name) => {
     
     <body>
         <div class="container">
-            <a href=""><img class="logo" src="https://i.ibb.co/7Xyj3PC/logo.png"
+            <a href=""><img class="logo" src="https://tubeacademymentor.web.app/assets/Tube_Academy-0b46c2be.png"
                     alt="TubeAcademey Logo"></a>
             <div class="message">Course Registration Confirmation</div>
             <div class="body">
@@ -76,10 +77,10 @@ exports.courseEnrollmentEmail = (courseName, name) => {
                     are excited to have you as a participant!</p>
                 <p>Please log in to your learning dashboard to access the course materials and start your learning journey.
                 </p>
-                <a class="cta" href="https://tubeacademyclass.web.app/dashboard/all-courses">Go to Dashboard</a>
+                <a class="cta" href="https://tubeacademymentor.web.app/dashboard/all-courses">Go to Dashboard</a>
             </div>
             <div class="support">If you have any questions or need assistance, please feel free to reach out to us at 
-            <a href="mailto:hp1004032@gmail.com">tubeacademyclass@gmail.com</a>. We are here to help!</div>
+            <a href="mailto:tubeacadameymentor@gmail.com">tubeacadameymentor@gmail.com</a>. We are here to help!</div>
         </div>
     </body>
     

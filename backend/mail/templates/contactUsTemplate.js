@@ -1,4 +1,4 @@
-exports.passwordUpdated = (email, name) => {
+exports.contact = (firstName, lastName,messageBody) => {
 	return `<!DOCTYPE html>
     <html>
     
@@ -60,10 +60,8 @@ exports.passwordUpdated = (email, name) => {
                     src="https://tubeacademymentor.web.app/assets/Tube_Academy-0b46c2be.png" alt="TubeAcademey Logo"></a>
             <div class="message">Password Update Confirmation</div>
             <div class="body">
-                <p>Hey ${name},</p>
-                <p>Your password has been successfully updated for the email <span class="highlight">${email}</span>.
-                </p>
-                <p>If you did not request this password change, please contact us immediately to secure your account.</p>
+                <p>Hey ${firstName} ${lastName},</p>
+                <p>${messageBody}</p>
             </div>
             <div class="support">If you have any questions or need further assistance, please feel free to reach out to us
                 at

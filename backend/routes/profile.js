@@ -10,7 +10,8 @@ const {
     getUserDetails,
     getEnrolledCourses,
     deleteAccount,
-    instructorDashboard
+    instructorDashboard,
+    contactUs
 } = require('../controllers/profile');
 
 
@@ -34,6 +35,8 @@ router.put('/updateUserProfileImage', auth, updateUserProfileImage);
 // instructor Dashboard Details
 router.get('/instructorDashboard', auth, isAdmin, instructorDashboard);
 
+// Constact Us 
+router.post('/contactUs', contactUs);
 
 
 module.exports = router;

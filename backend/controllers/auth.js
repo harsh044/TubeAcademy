@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const cookie = require('cookie');
 const mailSender = require('../utils/mailSender');
-const otpTemplate = require('../mail/templates/emailVerificationTemplate');
+const { otpTemplate } = require('../mail/templates/emailVerificationTemplate');
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 
 // ================ SEND-OTP For Email Verification ================
@@ -39,7 +39,6 @@ exports.sendOTP = async (req, res) => {
         // console.log('Your otp - ', otp);
 
         const name = email.split('@')[0].split('.').map(part => part.replace(/\d+/g, '')).join(' ');
-        console.log(name);
 
         // send otp in mail
         await mailSender(email, 'OTP Verification Email', otpTemplate(otp, name));
@@ -47,8 +46,6 @@ exports.sendOTP = async (req, res) => {
         // create an entry for otp in DB
         const otpBody = await OTP.create({ email, otp });
         // console.log('otpBody - ', otpBody);
-
-
 
         // return response successfully
         res.status(200).json({
@@ -289,7 +286,7 @@ exports.changePassword = async (req, res) => {
             { password: hashedPassword },
             { new: true });
 
-
+        console.log("email >>",updatedUserDetails.email)
         // send email
         try {
             const emailResponse = await mailSender(

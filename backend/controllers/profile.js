@@ -2,6 +2,8 @@ const Profile = require('../models/profile');
 const User = require('../models/user');
 const CourseProgress = require('../models/courseProgress')
 const Course = require('../models/course')
+const mailSender = require('../utils/mailSender');
+const {contact} = require('../mail/templates/contactUsTemplate')
 
 const { uploadImageToCloudinary, deleteResourceFromCloudinary } = require('../utils/imageUploader');
 const { convertSecondsToDuration } = require('../utils/secToDuration')
@@ -376,3 +378,35 @@ exports.getAllInstructors = async (req, res) => {
         })
     }
 }
+
+// ================ Contact Us ================
+exports.contactUs = async (req, res) => {
+    try {
+        // fetch email from re.body 
+        const { email } = req.body;
+        const { firstname } = req.body;
+        const { lastname } = req.body;
+        const { message } = req.body;
+
+        const name = email.split('@')[0].split('.').map(part => part.replace(/\d+/g, '')).join(' ');
+
+        // // send contact us mail
+        await mailSender(email, 'Contact Us Mail', contact(firstname, lastname,message), "contact us");
+
+        // return response successfully
+        res.status(200).json({
+            success: true,
+            message: 'Mail sent successfully'
+        });
+    }
+    
+    catch (error) {
+        console.log('Error while sending mail - ', error);
+        res.status(200).json({
+            success: false,
+            message: 'Error while sending mail',
+            error: error.mesage
+        });
+    }
+}
+    
