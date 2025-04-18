@@ -1,5 +1,5 @@
+// const BASE_URL = "https://tubeacademy-998632276972.us-central1.run.app/api/v1"
 const BASE_URL = "http://localhost:5000/api/v1"
-
 // AUTH ENDPOINTS
 export const endpoints = {
   SENDOTP_API: BASE_URL + "/auth/sendotp",
@@ -71,9 +71,9 @@ export const catalogData = {
   CATALOGPAGEDATA_API: BASE_URL + "/course/getCategoryPageDetails",
 }
 // CONTACT-US API
-export const contactusEndpoint = {
-  CONTACT_US_API: BASE_URL + "/reach/contact",
-}
+// export const contactusEndpoint = {
+//   CONTACT_US_API: BASE_URL + "/profile/contactUs",
+// }
 
 // SETTINGS PAGE API
 export const settingsEndpoints = {
@@ -81,4 +81,5 @@ export const settingsEndpoints = {
   UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
   CHANGE_PASSWORD_API: BASE_URL + "/auth/changepassword",
   DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
+  CONTACT_US_API: BASE_URL + "/profile/contactUs",
 }

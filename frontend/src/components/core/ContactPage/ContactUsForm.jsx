@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import { useDispatch, useSelector } from "react-redux"
 
 import CountryCode from '../../../../data/countrycode.json'
-// import { apiConnector } from "../../../services/apiConnector"
-// import { contactusEndpoint } from "../../../services/apis"
-
+import { contactUs } from "../../../services/operations/SettingsAPI"
 
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false)
+  const { token } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
   const {
     register,
     handleSubmit,
@@ -18,19 +19,33 @@ const ContactUsForm = () => {
   const submitContactForm = async (data) => {
     // console.log("Form Data - ", data)
     try {
-      setLoading(true)
-      // const res = await apiConnector(
-      //   "POST",
-      //   contactusEndpoint.CONTACT_US_API,
-      //   data
-      // )
-      // console.log("Email Res - ", res)
-      setLoading(false)
-    } catch (error) {
-      console.log("ERROR WHILE CONATACT US  - ", error.message)
-      setLoading(false)
-    }
-  }
+          dispatch(contactUs(token, data))
+        } catch (error) {
+          console.log("ERROR MESSAGE - ", error.message)
+        }
+      }
+
+  //   try {      
+  //     console.log("contact_data >>",data.countrycode)
+  //     console.log("contact_data >>",data.email)
+  //     console.log("contact_data >>",data.firstname)
+  //     console.log("contact_data >>",data.lastname)
+  //     console.log("contact_data >>",data.message)
+  //     console.log("contact_data >>",data.phoneNo)
+  //     console.log("endpoint >>",contactusEndpoint.CONTACT_US_API)
+  //     setLoading(true)
+  //     const res = await apiConnector(
+  //       "POST",
+  //       contactusEndpoint.CONTACT_US_API,
+  //       data
+  //     )
+  //     // console.log("Email Res - ", res)
+  //     setLoading(false)
+  //   } catch (error) {
+  //     console.log("ERROR WHILE CONATACT US  - ", error.message)
+  //     setLoading(false)
+  //   }
+  // }
 
   useEffect(() => {
     if (isSubmitSuccessful) {

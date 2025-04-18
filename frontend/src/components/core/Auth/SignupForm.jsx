@@ -77,12 +77,7 @@ function SignupForm() {
       id: 1,
       tabName: "Student",
       type: ACCOUNT_TYPE.STUDENT,
-    },
-    {
-      id: 2,
-      tabName: "Admin",
-      type: ACCOUNT_TYPE.ADMIN,
-    },
+    }
   ];
 
   return (

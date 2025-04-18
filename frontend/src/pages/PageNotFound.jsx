@@ -1,36 +1,37 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import "./PageNotFound.css";
 
 const PageNotFound = () => {
   return (
-    <section className="p-[40px] bg-white pt-[100px] ">
-      <div>
-        <div>
-          <div>
-            <div className="text-center">
-              <div className="h-[400px] bg-center bg-[url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif)] ">
-                <h1 className="text-center text-6xl font-extrabold text-black ">404</h1>
-              </div>
-
-              <div className="-mt-12 ">
-                <h3 className="text-4xl mb-1 ">
-                  Look like you're lost
-                </h3>
-
-                <p>The page you are looking for not available!</p>
-
-                <Link to='/'
-                  className=" py-[13px] px-10 text-lg bg-caribbeangreen-200 hover:bg-caribbeangreen-400 my-5 inline-block rounded-full font-semibold duration-300"
-                >
-                  Home
-                </Link>
-              </div>
+    <div className="container">
+      <div className="developer">
+        <div className="head">
+          <div className="cap">
+            <div className="dot"></div>
+            <div className="strip"></div>
+          </div>
+          <div className="face">
+            <div className="spects spect1">
+              <div className="eye"></div>
+            </div>
+            <div className="spects spect2">
+              <div className="eye"></div>
             </div>
           </div>
         </div>
+        <div className="t-shirt-container">
+          <div className="t-shirt">
+            <div className="neck"></div>
+          </div>
+        </div>
       </div>
-    </section>
-  )
-}
+      <div className="laptop">
+        <div className="logo"></div>
+      </div>
+      <div className="table"></div>
+      <div className="text">DEVELOPER</div>
+    </div>
+  );
+};
 
-export default PageNotFound
+export default PageNotFound;

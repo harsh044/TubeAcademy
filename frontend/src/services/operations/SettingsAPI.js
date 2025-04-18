@@ -10,6 +10,7 @@ const {
   UPDATE_PROFILE_API,
   CHANGE_PASSWORD_API,
   DELETE_PROFILE_API,
+  CONTACT_US_API
 } = settingsEndpoints
 
 
@@ -119,6 +120,31 @@ export function deleteProfile(token, navigate) {
     } catch (error) {
       console.log("DELETE_PROFILE_API API ERROR............", error)
       toast.error("Could Not Delete Profile")
+    }
+    toast.dismiss(toastId)
+  }
+}
+
+// ================ contact Us  ================
+export function contactUs(token, formData) {
+  return async (dispatch) => {
+
+    const toastId = toast.loading("Loading...")
+    try {
+      const response = await apiConnector("POST", CONTACT_US_API, formData, {
+        Authorization: `Bearer ${token}`,
+      })
+      console.log("CONTACT_US_API API RESPONSE............", response)
+
+      if (!response.data.success) {
+        throw new Error(response.data.message)
+      }
+   
+      // console.log('DATA = ', data)
+      toast.success("Email sent successfully")
+    } catch (error) {
+      console.log("CONTACT_US_API API ERROR............", error)
+      toast.error("Could Not Send Email")
     }
     toast.dismiss(toastId)
   }
