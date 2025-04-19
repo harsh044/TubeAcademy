@@ -29,7 +29,7 @@ export default function CourseCertificate() {
   // Copy certificate link to clipboard
   const handleCopyLink = () => {
     if (certificateid) {
-      navigator.clipboard.writeText(`http://localhost:5173/certificate/${certificateid}`)
+      navigator.clipboard.writeText(`https://tubeacademymentor.web.app/certificate/${certificateid}`)
         .then(() => {
           toast.success("Link copied to clipboard!"); // Show toast success message
         })
@@ -44,7 +44,7 @@ export default function CourseCertificate() {
   if (!courseCertificate) {
     return (
       <p className="grid h-[50vh] w-full place-content-center text-center text-richblack-5 text-3xl">
-        Could not fetch the certificate.
+        Loading.........
       </p>
     );
   }

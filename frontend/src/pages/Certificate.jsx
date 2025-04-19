@@ -47,7 +47,7 @@ const CertificateView = () => {
   if (!courseCertificate) {
     return (
       <p className="grid h-[50vh] w-full place-content-center text-center text-richblack-5 text-3xl">
-        Could not fetch the certificate.
+        Loading.......
       </p>
     );
   }

@@ -27,7 +27,8 @@ const {
   UPDATE_COURSE_API,
   CHECK_RATING_API,
   VIEW_CERTIFICATE_API,
-  VIEW_CERTIFICATE_GLOBAL_API
+  VIEW_CERTIFICATE_GLOBAL_API,
+  GET_CERTIFICATE_ID_API
 } = courseEndpoints
 
 
@@ -565,6 +566,33 @@ export const CertificateViewGlobal = async (certificateId) => {
     return response.data.data;
   } catch (error) {
     console.error("VIEW_CERTIFICATE_API ERROR:", error);
+
+    // Handle errors gracefully and return a structured error response
+    return {
+      success: false,
+      message: error?.response?.data?.message || "An unexpected error occurred.",
+    };
+  }
+};
+
+export const getCertificateId = async (courseid,userid,token) => {
+  try {
+    // Make the API call to generate the certificate
+    const response = await apiConnector("POST", GET_CERTIFICATE_ID_API, { courseid,userid,token },{
+      Authorization: `Bearer ${token}`, // Token in headers
+    });
+
+    console.log("GET_CERTIFICATE_ID_API RESPONSE:", response);
+
+    // Check if the response indicates success
+    if (!response.data.success) {
+      throw new Error(response.data.message || "Failed to get certificate id.");
+    }
+
+    // Return the successful response data
+    return response.data.data;
+  } catch (error) {
+    console.error("GET_CERTIFICATE_ID_API ERROR:", error);
 
     // Handle errors gracefully and return a structured error response
     return {

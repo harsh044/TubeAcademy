@@ -52,6 +52,7 @@ export const courseEndpoints = {
   CHECK_RATING_API: BASE_URL + "/course/checkRating",
   CREATE_NEW_CATEGORY: BASE_URL + "/course/createCategory",
   DELETE_CATEGORY: BASE_URL + "/course/deleteCategory",
+  GET_CERTIFICATE_ID_API: BASE_URL + "/course/certificateId",
   VIEW_CERTIFICATE_API: BASE_URL + "/course/certificateView",
   VIEW_CERTIFICATE_GLOBAL_API: BASE_URL + "/course/certificate",
 }

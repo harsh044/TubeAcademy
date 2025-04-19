@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 import Img from './../../common/Img';
 import convertToHoursMinutes from "../../../utils/courseDuration";
+import { apiConnector } from "../../../services/apiConnector";
+import { getCertificateId } from "../../../services/operations/courseDetailsAPI";
 
 export default function EnrolledCourses() {
   const { token } = useSelector((state) => state.auth);
@@ -39,7 +41,7 @@ export default function EnrolledCourses() {
           method: "POST"
         }
       );
-
+      console.log("res >>",response)
       if (!response.ok) {
         throw new Error("Failed to generate certificate");
       }
@@ -57,6 +59,20 @@ export default function EnrolledCourses() {
       console.error("Error generating certificate:", error);
     } finally {
       setLoadingCourse(null); // Reset loading state
+    }
+  };
+
+  // View Certificate for a specific course
+  const viewCertificate = async (courseId, studentId) => {
+    try {
+
+      const response = await getCertificateId(courseId, studentId,token)
+      const certificateId = response.certificateId;
+      navigate(`/dashboard/certificate/${certificateId}`);
+    } catch (error) {
+      console.error("Error viewing certificate:", error);
+    } finally {
+      setLoadingCourse(null);
     }
   };
 
@@ -159,11 +175,18 @@ export default function EnrolledCourses() {
               {course.progressPercentage === 100 && (
                 <div className="flex w-full justify-center px-5 py-3">
                   <button
-                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded shadow-md transition duration-300"
+                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 mr-2.5"
                     onClick={() => generateCertificate(course._id, user._id)}
                     disabled={loadingCourse === course._id}
                   >
                     {loadingCourse === course._id ? "Generating..." : "Generate Certificate"}
+                  </button>
+                  <button
+                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded shadow-md transition duration-300"
+                    onClick={() => viewCertificate(course._id, user._id)}
+                    disabled={loadingCourse === course._id}
+                  >
+                    {loadingCourse === course._id ? "Generating Certificate" : "View Certificate"}
                   </button>
                 </div>
               )}
@@ -190,6 +213,13 @@ export default function EnrolledCourses() {
                 >
                   {loadingCourse === course._id ? "Generating..." : "Generate Certificate"}
                 </button>
+                <button
+                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded shadow-md transition duration-300"
+                    onClick={() => viewCertificate(course._id, user._id)}
+                    disabled={loadingCourse === course._id}
+                  >
+                    {loadingCourse === course._id ? "Generating Certificate" : "View Certificate"}
+                  </button>
               </div>
             )}
           </div>
