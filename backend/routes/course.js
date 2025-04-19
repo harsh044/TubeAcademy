@@ -16,7 +16,7 @@ const {
 } = require('../controllers/course')
 
 const { updateCourseProgress } = require('../controllers/courseProgress')
-const { getCertificateView,getCertificateViewGlobal } = require('../controllers/certificateView')
+const { getCertificateId,getCertificateView,getCertificateViewGlobal } = require('../controllers/certificateView')
 
 // categories Controllers
 const {
@@ -102,6 +102,9 @@ router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress)
 
 // Get Course Certificate
 router.post("/certificateView", auth, isStudent, getCertificateView)
+
+// Get Course Certificate
+router.post("/certificateId", auth, isStudent, getCertificateId)
 
 
 // ********************************************************************************************************
